@@ -1,122 +1,101 @@
-# Ask my PDF
-
-
-
-Thank you for your interest in my application. Please be aware that this is only a **Proof of Concept system** and may contain bugs or unfinished features. If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV) on Twitter for news and updates.
-
-
-
-### Ask my PDF - Question answering system built on top of GPT3
-
-
-
-🎲 The primary use case for this app is to assist users in answering  questions about board game rules based on the instruction manual. While  the app can be used for other tasks, helping users with board game rules is particularly meaningful to me since I'm an avid fan of board games  myself. Additionally, this use case is relatively harmless, even in  cases where the model may experience hallucinations.
-
-
-
-🌐 The app can be accessed on the Streamlit Community Cloud at https://ask-my-pdf.streamlit.app/. 🔑 However, to use the app, you will need your own [OpenAI's API key](https://platform.openai.com/account/api-keys).
-
-
-
-📄 The app implements the following academic papers:
-
-- [In-Context Retrieval-Augmented Language Models](https://arxiv.org/abs/2302.00083) aka **RALM**
-
-- [Precise Zero-Shot Dense Retrieval without Relevance Labels](https://arxiv.org/abs/2212.10496) aka **HyDE** (Hypothetical Document Embeddings)
-
-
-
-### Installation
-
-
-
-1. Clone the repo:
-
-   `git clone https://github.com/mobarski/ask-my-pdf`
-
-2. Install dependencies:
-
-   `pip install -r ask-my-pdf/requirements.txt`
-
-3. Run the app:
-
-   `cd ask-my-pdf/src`
-   
-   `run.sh` or `run.bat`
-
-
-
-### High-level documentation
-
-
-
-#### RALM + HyDE
-
-![RALM + HyDE](docs/ralm_hyde.jpg)
-
-
-
-#### RALM + HyDE + context
-
-![RALM + HyDE + context](docs/ralm_hyde_wc.jpg)
-
-
-
-### Environment variables used for configuration
-
-
-
-##### General configuration:
-
-- **STORAGE_SALT** - cryptograpic salt used when deriving user/folder name and encryption key from API key, hexadecimal notation, 2-16 characters
-
-- **STORAGE_MODE** - index storage mode:  S3, LOCAL, DICT (default)
-
-- **STATS_MODE** - usage stats storage mode: REDIS, DICT (default)
-
-- **FEEDBACK_MODE** - user feedback storage mode: REDIS, NONE (default)
-
-- **CACHE_MODE** - embeddings cache mode: S3, DISK, NONE (default)
-
-  
-
-##### Local filesystem configuration (storage / cache):
-
-- **STORAGE_PATH** - directory path for index storage
-
-- **CACHE_PATH** - directory path for embeddings cache
-
-  
-
-##### S3 configuration (storage / cache):
-
-- **S3_REGION** - region code
-
-- **S3_BUCKET** - bucket name (storage)
-
-- **S3_SECRET** - secret key
-
-- **S3_KEY** - access key
-
-- **S3_URL** - URL
-
-- **S3_PREFIX** - object name prefix
-
-- **S3_CACHE_BUCKET** - bucket name (cache)
-
-- **S3_CACHE_PREFIX** - object name prefix (cache)
-
-  
-
-##### Redis configuration (for persistent usage statistics / user feedback):
-
-- **REDIS_URL** - Redis DB URL (redis[s]://:password@host:port/[db])
-
-  
-
-##### Community version related options:
-
-- **OPENAI_KEY** - API key used for the default user
-- **COMMUNITY_DAILY_USD** - default user's daily budget
-- **COMMUNITY_USER** - default user's code
-
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">询问我的 PDF</font></font></h1><a id="user-content-ask-my-pdf" class="anchor" aria-label="永久链接：询问我的 PDF" href="#ask-my-pdf"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">感谢您对我的申请感兴趣。</font><font style="vertical-align: inherit;">请注意，这只是一个</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">概念验证系统</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，可能包含错误或未完成的功能。</font><font style="vertical-align: inherit;">如果您喜欢这个应用程序，您可以❤️在 Twitter 上</font></font><a href="https://twitter.com/KerbalFPV" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关注我</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以获取新闻和更新。</font></font></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ask my PDF - 基于 GPT3 构建的问答系统</font></font></h3><a id="user-content-ask-my-pdf---question-answering-system-built-on-top-of-gpt3" class="anchor" aria-label="永久链接：Ask my PDF - 基于 GPT3 构建的问答系统" href="#ask-my-pdf---question-answering-system-built-on-top-of-gpt3"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">🎲 该应用程序的主要用途是帮助用户根据说明手册回答有关棋盘游戏规则的问题。</font><font style="vertical-align: inherit;">虽然该应用程序可用于其他任务，但帮助用户了解棋盘游戏规则对我来说特别有意义，因为我自己就是棋盘游戏的狂热粉丝。</font><font style="vertical-align: inherit;">此外，即使模型可能出现幻觉，此用例也相对无害。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">🌐 该应用程序可以在 Streamlit 社区云上访问：</font></font><a href="https://ask-my-pdf.streamlit.app/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://ask-my-pdf.streamlit.app/</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">🔑 但是，要使用该应用程序，您需要自己的</font></font><a href="https://platform.openai.com/account/api-keys" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OpenAI 的 API 密钥</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">📄 该应用程序实现了以下学术论文：</font></font></p>
+<ul dir="auto">
+<li>
+<p dir="auto"><a href="https://arxiv.org/abs/2302.00083" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上下文检索增强语言模型，</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">又名</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RALM</font></font></strong></p>
+</li>
+<li>
+<p dir="auto"><a href="https://arxiv.org/abs/2212.10496" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">无相关标签的精确零样本密集检索，</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">又名</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HyDE</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（假设文档嵌入）</font></font></p>
+</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">安装</font></font></h3><a id="user-content-installation" class="anchor" aria-label="永久链接：安装" href="#installation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ol dir="auto">
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">克隆存储库：</font></font></p>
+<p dir="auto"><code>git clone https://github.com/mobarski/ask-my-pdf</code></p>
+</li>
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">安装依赖项：</font></font></p>
+<p dir="auto"><code>pip install -r ask-my-pdf/requirements.txt</code></p>
+</li>
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行应用程序：</font></font></p>
+<p dir="auto"><code>cd ask-my-pdf/src</code></p>
+<p dir="auto"><code>run.sh</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">或者</font></font><code>run.bat</code></p>
+</li>
+</ol>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高级文档</font></font></h3><a id="user-content-high-level-documentation" class="anchor" aria-label="永久链接：高级文档" href="#high-level-documentation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h4 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拉姆+海德</font></font></h4><a id="user-content-ralm--hyde" class="anchor" aria-label="永久链接：RALM + HyDE" href="#ralm--hyde"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/mobarski/ask-my-pdf/blob/main/docs/ralm_hyde.jpg"><img src="/mobarski/ask-my-pdf/raw/main/docs/ralm_hyde.jpg" alt="拉姆+海德" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h4 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RALM + HyDE + 上下文</font></font></h4><a id="user-content-ralm--hyde--context" class="anchor" aria-label="永久链接：RALM + HyDE + 上下文" href="#ralm--hyde--context"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/mobarski/ask-my-pdf/blob/main/docs/ralm_hyde_wc.jpg"><img src="/mobarski/ask-my-pdf/raw/main/docs/ralm_hyde_wc.jpg" alt="RALM + HyDE + 上下文" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用于配置的环境变量</font></font></h3><a id="user-content-environment-variables-used-for-configuration" class="anchor" aria-label="永久链接：用于配置的环境变量" href="#environment-variables-used-for-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h5 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通用配置：</font></font></h5><a id="user-content-general-configuration" class="anchor" aria-label="固定链接： 常规配置：" href="#general-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">STORAGE_SALT</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 从 API 密钥派生用户/文件夹名称和加密密钥时使用的加密盐，十六进制表示法，2-16 个字符</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">STORAGE_MODE</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 索引存储模式：S3、LOCAL、DICT（默认）</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">STATS_MODE</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 使用统计信息存储模式：REDIS、DICT（默认）</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FEEDBACK_MODE</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 用户反馈存储模式：REDIS、NONE（默认）</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CACHE_MODE</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 嵌入缓存模式：S3、DISK、NONE（默认）</font></font></p>
+</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h5 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">本地文件系统配置（存储/缓存）：</font></font></h5><a id="user-content-local-filesystem-configuration-storage--cache" class="anchor" aria-label="永久链接：本地文件系统配置（存储/缓存）：" href="#local-filesystem-configuration-storage--cache"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">STORAGE_PATH</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 索引存储的目录路径</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CACHE_PATH</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 嵌入缓存的目录路径</font></font></p>
+</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h5 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3配置（存储/缓存）：</font></font></h5><a id="user-content-s3-configuration-storage--cache" class="anchor" aria-label="永久链接：S3 配置（存储/缓存）：" href="#s3-configuration-storage--cache"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_REGION</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 区域代码</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_BUCKET</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 存储桶名称（存储）</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_SECRET</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 秘密密钥</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_KEY</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 访问密钥</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_URL</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 网址</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_PREFIX</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 对象名称前缀</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_CACHE_BUCKET</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 存储桶名称（缓存）</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S3_CACHE_PREFIX</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 对象名称前缀（缓存）</font></font></p>
+</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h5 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Redis 配置（用于持久使用统计/用户反馈）：</font></font></h5><a id="user-content-redis-configuration-for-persistent-usage-statistics--user-feedback" class="anchor" aria-label="永久链接：Redis 配置（用于持久使用统计/用户反馈）：" href="#redis-configuration-for-persistent-usage-statistics--user-feedback"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REDIS_URL</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - Redis 数据库 URL (redis[s]://:password@host:port/[db])</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h5 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">社区版本相关选项：</font></font></h5><a id="user-content-community-version-related-options" class="anchor" aria-label="永久链接：社区版本相关选项：" href="#community-version-related-options"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OPENAI_KEY</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 用于默认用户的 API 密钥</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">COMMUNITY_DAILY_USD</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 默认用户的每日预算</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">COMMUNITY_USER</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 默认用户代码</font></font></li>
+</ul>
+</article></div>
